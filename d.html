@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="always" /> 
+    <meta name="theme-color" content="black" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- <script src="static/09586761.js"></script> -->
+  </head>
+  <body bgcolor="#111" style="margin: 0; overflow: hidden">
+    <script type="text/javascript" src="static/jw.js"></script>
+    <script>
+      jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
+    </script>
+    <link rel="stylesheet" href="static/play.css" />
+    <script src="//cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <div id="player"></div>
+    <script>
+      const data = new URLSearchParams(window.location.search);
+
+      const video = data.get("video").replace("vbd.mediaset.es", "vbdk.mediaset.es").replace("/main.ism/picky.m3u8", "/mpd-cenc.ism/web.mpd");
+      console.log(video)
+      const cover = data.get("cover");
+
+      const key1 = data.get("key1");
+      const key2 = data.get("key2");
+
+      var engine = new p2pml.hlsjs.Engine();
+      var player = jwplayer("player");
+      player.setup({
+        file: video,
+        onXhrOpen: function(xhr, url) {
+            xhr.setRequestHeader('user-agent', 'AppleCoreMedia/1.0.0.25A362 (Macintosh; U; Intel Mac OS X 26_0_1; en_us)');
+        },
+        image: cover,
+        height: "100%",
+        width: "100%",
+        autostart: false,
+        cast: {},
+        aspectratio: "16:9",
+        drm: {
+          clearkey: {
+            keyId: key1, // 575cb35f7f4fc5ae5d3f0321f679448b
+            key: key2, //f40532162fcf48db90218976395266ab
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
